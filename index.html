@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylex.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" ></script>
+</head>
+<body>
+    
+    <div class="container">
+     <input type="text" class="txtb" placeholder="ADD NEW TASK AND PRESS ENTER">
+     <div class="pendingTask">
+        <h3> Pending</h3>
+
+        
+        
+     </div>
+
+     <div class="done">
+        <h3>Completed</h3>
+        
+     </div>
+    </div>
+
+    <script type="text/javascript">
+$(".txtb").on("keyup",function(e){
+    //13 = enter key
+    if(e.keyCode == 13 && $(".txtb").val() != "")
+    {
+        var task = $("<div class='task'></div>").text($(".txtb").val());
+        var del = $("<i class= 'fas fa-trash-alt'></i>").click(function(){
+            var p = $(this).parent();
+            p.fadeOut(function(){
+                p.remove();
+            });
+        });
+        
+        var check = $("<n class= 'fas fa-check'></n>").click(function(){
+            var p = $(this).parent();
+            p.fadeOut(function(){
+                $(".done").append(p);
+                p.fadeIn();
+            });
+            $(this).remove();
+        });
+        
+        task.append(del,check);
+        $(".pendingTask").append(task);
+
+
+        //remove
+        $(".txtb").val("");
+    }
+
+});
+
+
+    </script>
+  
+
+
+
+</body>
+</html>
